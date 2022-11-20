@@ -365,6 +365,29 @@ async function search_players(req, res) {
   }
 }
 
+async function getAllSongs(req, res) {
+  connection.query(`
+  select
+    title, 
+    artists, 
+    album, 
+    acousticness, 
+    danceability, 
+    energy, 
+    release_date,
+    duration
+  from Songs
+  `, function (error, results, fields) {
+    if (error) {
+      console.log(error)
+      res.json({ error: error })
+    } else if (results) {
+      res.json({ results: results })
+    }
+  }
+  )
+}
+
 module.exports = {
   hello,
   jersey,
@@ -373,5 +396,6 @@ module.exports = {
   match,
   player,
   search_matches,
-  search_players
+  search_players,
+  getAllSongs,
 }

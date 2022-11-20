@@ -42,6 +42,12 @@ const getPlayerSearch = async (name, nationality, club, rating_high, rating_low,
     return res.json()
 }
 
+const getAllSongs = async () => {
+  var res = await fetch(`http://${config.server_host}:${config.server_port}/song`, {
+      method: 'GET',
+  })
+  return res.json()
+}
 
 
 
@@ -60,5 +66,6 @@ export {
     getMatch,
     getPlayer,
     getMatchSearch,
-    getPlayerSearch
+    getPlayerSearch,
+    getAllSongs,
 }

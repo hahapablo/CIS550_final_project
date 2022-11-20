@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql      = require('mysql');
+const mysql = require('mysql');
 var cors = require('cors')
 
 
@@ -35,12 +35,13 @@ app.get('/search/matches', routes.search_matches)
 // Route 8 - register as GET 
 app.get('/search/players', routes.search_players)
 
-
+// Route 9 - register as GET 
+app.get('/song', routes.getAllSongs)
 
 
 
 app.listen(config.server_port, () => {
-    console.log(`Server running at http://${config.server_host}:${config.server_port}/`);
+  console.log(`Server running at http://${config.server_host}:${config.server_port}/`);
 });
 
 module.exports = app;

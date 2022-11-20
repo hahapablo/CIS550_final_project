@@ -1,9 +1,9 @@
 {
-  "rds_host": "exercise3.cm1rvtzkki0l.us-east-1.rds.amazonaws.com",
+  "rds_host": "db-group26.cdoxm3c3pkcw.us-east-1.rds.amazonaws.com",
   "rds_port": "3306",
-  "rds_user": "hahapablo",
-  "rds_password": "hahapablo123",
-  "rds_db": "FIFA",
+  "rds_user": "admin",
+  "rds_password": "12345678",
+  "rds_db": "PROJECT",
   "server_host": "127.0.0.1",
   "server_port": "8080"
 }

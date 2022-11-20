@@ -14,6 +14,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "shards-ui/dist/css/shards.min.css"
 import MatchesPage from './pages/MatchesPage';
 
+import SearchPage from './pages/SearchPage';
+
+
 ReactDOM.render(
   <div>
     <Router>
@@ -32,6 +35,11 @@ ReactDOM.render(
 							path="/matches"
 							render={() => (
 								<MatchesPage />
+							)}/>
+        <Route exact
+							path="/search"
+							render={() => (
+								<SearchPage />
 							)}/>
       </Switch>
     </Router>
