@@ -1,39 +1,20 @@
 import React, { useEffect } from 'react';
 import {useState} from "react";
-import { PlusOutlined } from '@ant-design/icons';
 import {
-  Form,
   Input,
   Button,
   Radio,
-  DatePicker,
   InputNumber,
   Row,
   Col,
-  Space, Table, Tag
+  Table,
 } from 'antd';
 
 
-import { getAllSongs } from '../fetcher'
-
+import { getAllSongs, getSongsBySearch, getSongsBySearchWithRange, getSongsBySearchWithRangeAndRank } from '../fetcher'
 
 import MenuBar from '../components/MenuBar';
 import Text from 'antd/lib/typography/Text';
-
-const { Search } = Input;
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
-
-/**
- *     title, 
-    artists, 
-    album, 
-    acousticness, 
-    danceability, 
-    energy, 
-    release_data,
-    duration
- */
 
 const columns = [
   {
@@ -68,13 +49,13 @@ const columns = [
   },
   {
     title: 'Time added',
-    dataIndex: 'release_data',
+    dataIndex: 'release_date',
     key: 'timeAdded',
   },
   {
     title: 'Duration',
-    dataIndex: 'duration',
-    key: 'duration',
+    dataIndex: 'duration_ms',
+    key: 'duration_ms',
   },
 ];
 
@@ -95,18 +76,19 @@ const data = [
 function SearchPage() {
 
   const [songList, setSongList] = useState([])
-
   const [searchBy, setSearchBy] = useState('')
   const [searchContent, setSearchContent] = useState('')
   const [rankBy, setRankBy] = useState('')
-  const [acousticnessLow, setAcousticnessLow] = useState(0)
-  const [acousticnessHigh, setAcousticnessHigh] = useState(100)
-  const [danceabilityLow, setDanceabilityLow] = useState(0)
-  const [danceabilityHigh, setDanceabilityHigh] = useState(100)
-  const [energyLow, setEnergyLow] = useState(0)
-  const [energyHigh, setEnergyHigh] = useState(100)
+  const [acousticnessLow, setAcousticnessLow] = useState(0.0)
+  const [acousticnessHigh, setAcousticnessHigh] = useState(1.0)
+  const [danceabilityLow, setDanceabilityLow] = useState(0.0)
+  const [danceabilityHigh, setDanceabilityHigh] = useState(1.0)
+  const [energyLow, setEnergyLow] = useState(0.0)
+  const [energyHigh, setEnergyHigh] = useState(1.0)
+  const [rankOrder, setRankOrder] = useState("DESC")
 
   const handleOnChangeSearchContent = (e) => {
+    console.log("searchContent = ", e.target.value)
     setSearchContent(e.target.value);
   };
 
@@ -118,6 +100,55 @@ function SearchPage() {
   const handleOnChangeRankBy = (e) => {
     console.log('radio checked', e.target.value);
     setRankBy(e.target.value);
+  };
+
+  const handleOnChangeRankByOrder = (e) => {
+    console.log('radio checked', e.target.value);
+    setRankOrder(e.target.value);
+  };
+
+  const handleOnChangeAcousticnessLow = (value) => {
+    setAcousticnessLow(value);
+  };
+
+  const handleOnChangeAcousticnessHigh = (value) => {
+    setAcousticnessHigh(value);
+  };
+
+  const handleOnChangeDanceabilityLow = (value) => {
+    setDanceabilityLow(value);
+  };
+
+  const handleOnChangeDanceabilityHigh = (value) => {
+    setDanceabilityHigh(value);
+  };
+
+  const handleOnChangeEnergyLow = (value) => {
+    setEnergyLow(value);
+  };
+
+  const handleOnChangeEnergyHigh = (value) => {
+    setEnergyHigh(value);
+  };
+
+  const handleSubmitSearch1 = async() => {
+    const search1Result = await getSongsBySearch(searchBy, searchContent)
+    console.log("search1Result=", search1Result)
+    setSongList(search1Result.results);
+  };
+  
+  const handleSubmitSearch2 = async() => {
+    const search2Result = 
+      await getSongsBySearchWithRange(searchBy, searchContent, acousticnessLow, acousticnessHigh, danceabilityLow, danceabilityHigh, energyLow, energyHigh)
+    console.log("search2Result=", search2Result)
+    setSongList(search2Result.results);
+  };
+
+  const handleSubmitApply = async() => {
+    const search3Result = 
+      await getSongsBySearchWithRangeAndRank(searchBy, searchContent, acousticnessLow, acousticnessHigh, danceabilityLow, danceabilityHigh, energyLow, energyHigh, rankBy, rankOrder)
+    console.log("search3Result=", search3Result)
+    setSongList(search3Result.results);
   };
 
 
@@ -147,20 +178,22 @@ function SearchPage() {
            <Text>Search By </Text> 
           </Col>
 
-          <Col span={6}  offset={0} >         
+          <Col span={10}  offset={0} >         
             <Radio.Group style={{display:"flex", justifyContent:"start"}} onChange={handleOnChangeSearchBy} value={searchBy}>
               <Radio value="all"> All </Radio>
               <Radio value="song"> Song </Radio>
               <Radio value="album"> Album </Radio>
-              <Radio value="singer"> Singer </Radio>
+              <Radio value="artist"> Artist </Radio>
             </Radio.Group> 
           </Col>
           <Col span={4}  offset={0} >  
             <Input placeholder='search input' value={searchContent} onChange={handleOnChangeSearchContent}/>
           </Col>
-          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> <Button>Search</Button> </Col>
+          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> 
+            <Button onClick={handleSubmitSearch1}>Search</Button> 
+          </Col>
 
-          <Col span={9}  offset={0} >  
+          <Col span={5}  offset={0} >  
           </Col>
         </Row>
 
@@ -169,25 +202,28 @@ function SearchPage() {
             <Text>Filter By </Text> 
           </Col>
 
-          <Col span={10}  offset={0} style={{display:"flex", justifyContent:"space-around"}}>
+          <Col span={14}  offset={0} style={{display:"flex", justifyContent:"space-around"}}>
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>Accousticness</Text>
-            <InputNumber />
+              <InputNumber value={acousticnessLow}  defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeAcousticnessLow} />
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>~</Text>
-            <InputNumber />
+              <InputNumber value={acousticnessHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeAcousticnessHigh} />
           
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>Danceability </Text>
-            <InputNumber />
+            <InputNumber value={danceabilityLow} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeDanceabilityLow}/>
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>~</Text>
-            <InputNumber />
+            <InputNumber value={danceabilityHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeDanceabilityHigh}/>
 
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>Energy </Text>
-            <InputNumber />
+            <InputNumber value={energyLow} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeEnergyLow}/>
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>~</Text>
-            <InputNumber />
+            <InputNumber value={energyHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeEnergyHigh}/>
           </Col>
 
-          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}} > <Button>Search</Button> </Col>
-          <Col span={9} offset={0}></Col>
+          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}} > 
+            <Button onClick={handleSubmitSearch2}>Search</Button> 
+          </Col>
+
+          <Col span={5} offset={0}></Col>
         </Row>
 
         <Row justify="space-around" style={{paddingTop:"10px"}}>
@@ -195,28 +231,34 @@ function SearchPage() {
             <Text>Rank By </Text> 
           </Col>
 
-          <Col span={10}  offset={0}>         
+          <Col span={6}  offset={0}>         
             <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankBy} onChange={handleOnChangeRankBy} >
-              <Radio value="accousticness"> Accousticness </Radio>
+              <Radio value="acousticness"> Acousticness </Radio>
               <Radio value="danceability"> Danceability </Radio>
               <Radio value="energy"> Energy </Radio>
               <Radio value="duration"> Duration </Radio>
-              <Radio value="random"> Random </Radio>
+              <Radio value="release_date"> Release Date </Radio>
+              <Radio value=""> Random </Radio>
             </Radio.Group> 
           </Col>
-          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> <Button>Apply</Button> </Col>
+          <Col span={8}  offset={0}>         
+            <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankBy} onChange={handleOnChangeRankByOrder} >
+              <Radio value="DESC"> High-to-Low </Radio>
+              <Radio value="ASC"> Low-to-High </Radio>
+            </Radio.Group> 
+          </Col>
+
+          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> 
+            <Button onClick={handleSubmitApply}>Apply</Button>
+          </Col>
 
 
-          <Col span={9} offset={0} style={{justifyContent:"center"}}> </Col>
+          <Col span={5} offset={0} style={{justifyContent:"center"}}> </Col>
         </Row>
-
-
-
-
 
       </div>
 
-      <Table columns={columns} dataSource={data} style={{paddingTop:"10px"}} />
+      <Table columns={columns} dataSource={songList} style={{paddingTop:"10px"}} />
 
 
     </div>
