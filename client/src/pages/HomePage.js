@@ -10,40 +10,20 @@ import MenuBar from '../components/MenuBar';
 
 import { Carousel } from 'antd';
 import { Layout } from 'antd';
+import accoustic from '../pics/accoustic.JPG';
+import dance from '../pics/dance.JPG';
+import energy from '../pics/energy.JPG';
+import random from '../pics/random.JPG';
 import rock from '../pics/rock.jpg';
-import pop from '../pics/pop.jpg';
-import edm from '../pics/edm.jpg';
-import accoustic from '../pics/accoustic.jpg';
-import ts from '../pics/ts.jpg';
-
 const { Header, Footer, Sider, Content } = Layout;
 
 const { Column, ColumnGroup } = Table;
 const { Option } = Select;
 
 const contentStyle = {
-  background: rock,
 
 };
 
-const imgCarousel = [
-  {
-    id: 2,
-    src: pop
-  },
-  {
-    id: 3,
-    src: rock
-  },
-  {
-    id: 4,
-    src: edm
-  },
-  {
-    id: 5,
-    src: accoustic
-  },
-];
 
 class HomePage extends React.Component {
 
@@ -56,29 +36,22 @@ class HomePage extends React.Component {
             <Carousel autoplay autoplaySpeed = {1500} style = {{ width: '100%', height:'100%'}}>
               <div style = {{justifyContent: "space-around"}}>
                   <div>
-                    <img src={edm} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}} />
+                  <a href="search"><img src={dance} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>
                   </div>
                 </div>
               <div style = {{justifyContent: "space-around"}}>
                   <div>
-                    <img src={ts} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}} />
-                  </div>
+                  <a href="search"><img src={energy} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
                 </div>
                 <div style = {{justifyContent: "space-around"}}>
                   <div>
-                    <img src={pop} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}/>
-                  </div>
+                  <a href="search"><img src={accoustic} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
                 </div>
                 <div style = {{justifyContent: "space-around"}}>
                   <div>
-                    <img src={accoustic} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}} />
-                  </div>
+                  <a href="search"><img src={random} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
                 </div>
-                <div style = {{justifyContent: "space-around"}}>
-                  <div>
-                    <img src={rock} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}} />
-                  </div>
-                </div>
+                
               
             </Carousel>
           </Content>

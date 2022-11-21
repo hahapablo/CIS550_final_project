@@ -42,7 +42,7 @@ ReactDOM.render(
         <Route exact
 							path="/"
 							render={() => (
-								<SearchPage />
+								<HomePage />
 							)}/>
       </Switch>
     </Router>
