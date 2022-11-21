@@ -48,7 +48,7 @@ const columns = [
     key: 'energy',
   },
   {
-    title: 'Time added',
+    title: 'Release Date',
     dataIndex: 'release_date',
     key: 'timeAdded',
   },
@@ -231,18 +231,18 @@ function SearchPage() {
             <Text>Rank By </Text> 
           </Col>
 
-          <Col span={6}  offset={0}>         
+          <Col span={10}  offset={0}>         
             <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankBy} onChange={handleOnChangeRankBy} >
               <Radio value="acousticness"> Acousticness </Radio>
               <Radio value="danceability"> Danceability </Radio>
               <Radio value="energy"> Energy </Radio>
               <Radio value="duration"> Duration </Radio>
-              <Radio value="release_date"> Release Date </Radio>
+              <Radio value="release_date"> Release</Radio>
               <Radio value=""> Random </Radio>
             </Radio.Group> 
           </Col>
-          <Col span={8}  offset={0}>         
-            <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankBy} onChange={handleOnChangeRankByOrder} >
+          <Col span={4}  offset={0}>         
+            <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankOrder} onChange={handleOnChangeRankByOrder} >
               <Radio value="DESC"> High-to-Low </Radio>
               <Radio value="ASC"> Low-to-High </Radio>
             </Radio.Group> 
@@ -251,7 +251,6 @@ function SearchPage() {
           <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> 
             <Button onClick={handleSubmitApply}>Apply</Button>
           </Col>
-
 
           <Col span={5} offset={0} style={{justifyContent:"center"}}> </Col>
         </Row>
