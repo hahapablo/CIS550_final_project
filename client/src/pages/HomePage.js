@@ -10,7 +10,7 @@ import MenuBar from '../components/MenuBar';
 
 import { Carousel } from 'antd';
 import { Layout } from 'antd';
-import accoustic from '../pics/accoustic.JPG';
+import accoustic from '../pics/accoustic.jpg';
 import dance from '../pics/dance.JPG';
 import energy from '../pics/energy.JPG';
 import random from '../pics/random.JPG';

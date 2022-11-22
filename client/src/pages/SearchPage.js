@@ -178,7 +178,7 @@ function SearchPage() {
            <Text>Search By </Text> 
           </Col>
 
-          <Col span={10}  offset={0} >         
+          <Col span={11}  offset={0} >         
             <Radio.Group style={{display:"flex", justifyContent:"start"}} onChange={handleOnChangeSearchBy} value={searchBy}>
               <Radio value="all"> All </Radio>
               <Radio value="song"> Song </Radio>
@@ -186,15 +186,13 @@ function SearchPage() {
               <Radio value="artist"> Artist </Radio>
             </Radio.Group> 
           </Col>
-          <Col span={4}  offset={0} >  
+          <Col span={8}  offset={0} >  
             <Input placeholder='search input' value={searchContent} onChange={handleOnChangeSearchContent}/>
           </Col>
           <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> 
             <Button onClick={handleSubmitSearch1}>Search</Button> 
           </Col>
 
-          <Col span={5}  offset={0} >  
-          </Col>
         </Row>
 
         <Row justify="space-around" style={{paddingTop:"10px"}}>
@@ -202,7 +200,7 @@ function SearchPage() {
             <Text>Filter By </Text> 
           </Col>
 
-          <Col span={14}  offset={0} style={{display:"flex", justifyContent:"space-around"}}>
+          <Col span={19}  offset={0} style={{display:"flex", justifyContent:"space-around"}}>
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>Accousticness</Text>
               <InputNumber value={acousticnessLow}  defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeAcousticnessLow} />
             <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>~</Text>
@@ -223,7 +221,6 @@ function SearchPage() {
             <Button onClick={handleSubmitSearch2}>Search</Button> 
           </Col>
 
-          <Col span={5} offset={0}></Col>
         </Row>
 
         <Row justify="space-around" style={{paddingTop:"10px"}}>
@@ -231,7 +228,7 @@ function SearchPage() {
             <Text>Rank By </Text> 
           </Col>
 
-          <Col span={10}  offset={0}>         
+          <Col span={12}  offset={0}>         
             <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankBy} onChange={handleOnChangeRankBy} >
               <Radio value="acousticness"> Acousticness </Radio>
               <Radio value="danceability"> Danceability </Radio>
@@ -241,7 +238,10 @@ function SearchPage() {
               <Radio value=""> Random </Radio>
             </Radio.Group> 
           </Col>
-          <Col span={4}  offset={0}>         
+          <Col span={2}  offset={0}>
+            <Text>Order By</Text> 
+          </Col>
+          <Col span={5}  offset={0}>         
             <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankOrder} onChange={handleOnChangeRankByOrder} >
               <Radio value="DESC"> High-to-Low </Radio>
               <Radio value="ASC"> Low-to-High </Radio>
@@ -252,7 +252,6 @@ function SearchPage() {
             <Button onClick={handleSubmitApply}>Apply</Button>
           </Col>
 
-          <Col span={5} offset={0} style={{justifyContent:"center"}}> </Col>
         </Row>
 
       </div>
