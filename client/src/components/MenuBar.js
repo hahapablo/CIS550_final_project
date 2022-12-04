@@ -23,6 +23,11 @@ class MenuBar extends React.Component {
                   Category
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink active  href="/lyrics" >
+                  Lyrics
+                </NavLink>
+              </NavItem>
             </Nav>
         </Navbar>
         )

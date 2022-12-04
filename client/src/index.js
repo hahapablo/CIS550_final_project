@@ -13,6 +13,7 @@ import "shards-ui/dist/css/shards.min.css"
 
 import SearchPage from './pages/SearchPage';
 import HomePage from './pages/HomePage';
+import LyricsPage from './pages/LyricsPage';
 
 ReactDOM.render(
   <div>
@@ -38,6 +39,11 @@ ReactDOM.render(
 							path="/search"
 							render={() => (
 								<SearchPage />
+							)}/>
+        <Route exact
+							path="/lyrics"
+							render={() => (
+								<LyricsPage />
 							)}/>
         <Route exact
 							path="/"
