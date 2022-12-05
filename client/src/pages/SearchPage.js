@@ -11,7 +11,7 @@ import {
 } from 'antd';
 
 
-import { getAllSongs, getSongsBySearch, getSongsBySearchWithRange, getSongsBySearchWithRangeAndRank } from '../fetcher'
+import { getAllSongs, getSongsBySearch, getSongsBySearchWithRange, getSongsBySearchWithRangeAndRank, getSongInfo } from '../fetcher'
 
 import MenuBar from '../components/MenuBar';
 import Text from 'antd/lib/typography/Text';
@@ -184,6 +184,8 @@ function SearchPage() {
               <Radio value="song"> Song </Radio>
               <Radio value="album"> Album </Radio>
               <Radio value="artist"> Artist </Radio>
+              <Radio value="lyrics"> Lyrics </Radio>
+              <Radio value="genre"> Genre </Radio>
             </Radio.Group> 
           </Col>
           <Col span={8}  offset={0} >  

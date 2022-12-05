@@ -99,6 +99,44 @@ async function getSongsSearchByContent(req, res) {
         }
       }
     )
+  } else if (searchBy === "lyrics") {
+    connection.query(`
+      SELECT d1.title, d1.artists, d1.album, d1.acousticness, d1.danceability, d1.energy, d1.release_date, d1.duration_ms
+      FROM Songs d1
+      INNER JOIN (
+        SELECT title, artists, year
+        FROM Lyrics
+        WHERE lyrics LIKE '%${input}%') d2
+      ON d1.title = d2.title
+      AND d1.artists = d2.artists
+      AND d1.year = d2.year;`,
+      function (error, results, fields) {
+        if (error) {
+          console.log(error)
+          res.json({ error: error })
+        } else if (results) {
+          res.json({ results: results })
+        }
+      }
+    )
+  } else if (searchBy === "genre") {
+    connection.query(`
+      SELECT d1.title, d1.artists, d1.album, d1.acousticness, d1.danceability, d1.energy, d1.release_date, d1.duration_ms
+      FROM Songs d1
+      JOIN Lyrics d2
+      ON d1.title = d2.title
+      AND d1.artists = d2.artists
+      AND d1.year = d2.year
+      WHERE d2.tag LIKE '${input}';`,
+      function (error, results, fields) {
+        if (error) {
+          console.log(error)
+          res.json({ error: error })
+        } else if (results) {
+          res.json({ results: results })
+        }
+      }
+    )
   }
 }
 
@@ -275,17 +313,40 @@ async function getSongsSearchByContentAndRangeAndRank(req, res) {
   }
 }
 
+async function getSongInfo(req, res) {
+  console.log("getSongInfo")
+  const title = req.query.Title
+  const artist = req.query.Artist
+  const year = req.query.Year
+  console.log(title)
+  console.log(artist)
+  console.log(year)
+
+  connection.query(`
+    SELECT d1.title Title, d1.artists Artists, d1.album Album, d2.lyrics
+    FROM Songs d1
+    JOIN Lyrics d2
+    ON d1.title = d2.title
+    AND d1.artists = d2.artists
+    AND d1.year = d2.year
+    WHERE d1.title = ${title}
+    AND d1.artists = ${artist}
+    AND d1.year = ${year};
+  `, function (error, results, fields) {
+    if (error) {
+      console.log(error)
+      res.json({ error: error })
+    } else if (results) {
+      res.json({ results: results })
+    }
+  }
+  )
+}
+
 module.exports = {
-  // hello,
-  // jersey,
-  // all_matches,
-  // all_players,
-  // match,
-  // player,
-  // search_matches,
-  // search_players,
   getAllSongs,
   getSongsSearchByContent,
   getSongsSearchByContentAndRange,
-  getSongsSearchByContentAndRangeAndRank
+  getSongsSearchByContentAndRangeAndRank,
+  getSongInfo,
 }

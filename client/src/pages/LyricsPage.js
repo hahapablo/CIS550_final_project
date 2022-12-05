@@ -12,7 +12,7 @@ import {
 } from 'antd';
 
 
-import { getAllSongs, getSongsBySearch, getSongsBySearchWithRange, getSongsBySearchWithRangeAndRank } from '../fetcher'
+import { getAllSongs, getSongsBySearch, getSongInfo } from '../fetcher'
 
 import MenuBar from '../components/MenuBar';
 import Text from 'antd/lib/typography/Text';
@@ -101,9 +101,12 @@ function LyricsPage() {
   };
 
   const handleSubmitSearch1 = async() => {
-    const search1Result = await getSongsBySearch(searchBy, searchContent1, searchContent2, searchContent3)
+    console.log("searchContent1", searchContent1)
+    console.log("searchContent2", searchContent2)
+    console.log("searchContent3", searchContent3)
+    const search1Result = await getSongInfo(searchContent1, searchContent2, searchContent3)
     console.log("search1Result=", search1Result)
-    setSongList(search1Result.results);
+    //setSongList(search1Result.results);
   };
   
 
@@ -128,6 +131,34 @@ function LyricsPage() {
       <MenuBar />
 
       <div style={{paddingLeft:"10px",paddingRight:"10px"}}>
+        <Row justify="space-around" style={{paddingTop:"10px"}}>
+          <Col span={1}  offset={0}>
+           <Text>Song</Text> 
+          </Col>
+          <Col span={5}  offset={0} >  
+              <Input placeholder='search input' value={searchContent1} onChange={handleOnChangeSearchContent1}/>
+          </Col>
+
+          <Col span={1}  offset={1}>
+           <Text>Artist</Text> 
+          </Col>
+          <Col span={5}  offset={0} >
+              <Input placeholder='search input' value={searchContent2} onChange={handleOnChangeSearchContent2}/>
+          </Col>
+
+          <Col span={1}  offset={1}>
+           <Text>Year</Text> 
+          </Col>
+          <Col span={5}  offset={0} >
+              <Input placeholder='search input' value={searchContent3} onChange={handleOnChangeSearchContent3}/>
+          </Col>
+
+          <Col span={3} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> 
+            <Button onClick={handleSubmitSearch1}>Search</Button> 
+          </Col>
+        </Row>
+
+
         <Row justify="space-around" style={{paddingTop:"10px"}}>
           <Col span={12}>
             <Row justify="space-around">
