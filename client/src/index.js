@@ -14,12 +14,16 @@ import "shards-ui/dist/css/shards.min.css"
 import SearchPage from './pages/SearchPage';
 import HomePage from './pages/HomePage';
 import LyricsPage from './pages/LyricsPage';
-
+import LoginPage from './pages/LoginPage';
 ReactDOM.render(
   <div>
     <Router>
       <Switch>
-
+	  	<Route exact
+							path="/login"
+							render={() => (
+								<LoginPage />
+							)}/>
         <Route exact
 							path="/category"
 							render={() => (
