@@ -19,7 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.set('strictQuery', true);
 
 
-const CONNECTION_URL = 'mongodb+srv://cis550:cis5502022@cluster0.n6knc.mongodb.net/?retryWrites=true&w=majority';
 
 
 
