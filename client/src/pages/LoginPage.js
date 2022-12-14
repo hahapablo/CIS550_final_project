@@ -6,8 +6,10 @@ import dotenv from 'dotenv'
 import HomePage from './HomePage';
 import {Redirect} from 'react-router-dom';
 
+const REACT_APP_FB_APP_ID = 692359392603148;
 
 dotenv.config();
+
 const REDIRECT_URI = '/';
 
 const Login = () => {
@@ -34,7 +36,7 @@ const Login = () => {
             <h2>Please select from a login method below</h2>
             <LoginSocialFacebook
                 isOnlyGetToken
-                appId={process.env.REACT_APP_FB_APP_ID || ''}
+                appId={REACT_APP_FB_APP_ID || ''}
                 redirect_uri={REDIRECT_URI}
 
                 onLoginStart={onLoginStart}

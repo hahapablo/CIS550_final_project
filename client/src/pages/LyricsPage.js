@@ -4,86 +4,20 @@ import {useState} from "react";
 import {
   Input,
   Button,
-  Radio,
-  InputNumber,
   Row,
   Col,
-  Table,
 } from 'antd';
 
-
-import { getAllSongs, getSongsBySearch, getSongInfo } from '../fetcher'
+import { getSongInfo } from '../fetcher'
 
 import MenuBar from '../components/MenuBar';
 import Text from 'antd/lib/typography/Text';
 
-const columns = [
-  {
-    title: 'Song',
-    dataIndex: 'title',
-    key: 'song',
-  },
-  {
-    title: 'Singer',
-    dataIndex: 'artists',
-    key: 'singer',
-  },
-  {
-    title: 'Album',
-    dataIndex: 'album',
-    key: 'album',
-  },
-  {
-    title: 'Acousticness',
-    dataIndex: 'acousticness',
-    key: 'acousticness',
-  },
-  {
-    title: 'Danceability',
-    dataIndex: 'danceability',
-    key: 'danceability',
-  },
-  {
-    title: 'Energy',
-    dataIndex: 'energy',
-    key: 'energy',
-  },
-  {
-    title: 'Release Date',
-    dataIndex: 'release_date',
-    key: 'timeAdded',
-  },
-  {
-    title: 'Duration',
-    dataIndex: 'duration_ms',
-    key: 'duration_ms',
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    title: 'Taylor Swift1',
-    artists: 32,
-    album: 'New York No. 1 Lake Park',
-    acousticness: 11,
-    danceability: 11,
-    energy: 10,
-    release_data: 2000,
-    duration: 2,
-  },
-];
-
 function LyricsPage() {
 
-  const [songList, setSongList] = useState([])
-  const [searchBy, setSearchBy] = useState('')
   const [searchContent1, setSearchContent1] = useState('')
   const [searchContent2, setSearchContent2] = useState('')
   const [searchContent3, setSearchContent3] = useState('')
-
-  const [container, setContainer] = useState(null);
-
 
   const handleOnChangeSearchContent1 = (e) => {
     console.log("searchContent = ", e.target.value)
@@ -114,10 +48,7 @@ function LyricsPage() {
     console.log("hey")
     const func = async () => {
       try {
-        const allSongs = await getAllSongs();
-        console.log("allSongs = ", allSongs)
-        console.log("allSongs.results = ", allSongs.results)
-        setSongList(allSongs.results)
+
       } catch (err) {
         console.log("fetch fail")
         console.log(err);

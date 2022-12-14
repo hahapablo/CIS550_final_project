@@ -44,6 +44,7 @@ const getSongInfo = async(title, artist, year) => {
   var res = await fetch(`http://${config.server_host}:${config.server_port}/search_song_info?Title=${title}&Artist=${artist}&Year=${year}`, {
     method: 'GET',
   })
+  console.log(res.json())
   return res.json()
 }
 

@@ -11,7 +11,7 @@ import {
 } from 'antd';
 
 
-import { getAllSongs, getSongsBySearch, getSongsBySearchWithRange, getSongsBySearchWithRangeAndRank, getSongInfo } from '../fetcher'
+import { getAllSongs, getSongsBySearch, getSongsBySearchWithRange, getSongsBySearchWithRangeAndRank } from '../fetcher'
 
 import MenuBar from '../components/MenuBar';
 import Text from 'antd/lib/typography/Text';

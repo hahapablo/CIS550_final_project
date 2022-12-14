@@ -323,15 +323,15 @@ async function getSongInfo(req, res) {
   console.log(year)
 
   connection.query(`
-    SELECT d1.title Title, d1.artists Artists, d1.album Album, d2.lyrics
+    SELECT d1.title, d1.artists, d1.album, d2.lyrics
     FROM Songs d1
     JOIN Lyrics d2
-    ON d1.title = d2.title
-    AND d1.artists = d2.artists
-    AND d1.year = d2.year
+      ON d1.title = d2.title
+      AND d1.artists = d2.artists
+      AND d1.year = d2.year
     WHERE d1.title = ${title}
-    AND d1.artists = ${artist}
-    AND d1.year = ${year};
+      AND d1.artists = ${artist}
+      AND d1.year = ${year};
   `, function (error, results, fields) {
     if (error) {
       console.log(error)
