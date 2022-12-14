@@ -9,15 +9,160 @@ const app = require('../server');
 // **********************************
 
 
-test("GET /hello no parameters", async () => {
-    await supertest(app).get("/hello?")
+test("GET /song", async () => {
+    await supertest(app).get("/song")
       .expect(200)
       .then((response) => {
-        // Check text 
-        expect(response.text).toBe("Hello! Welcome to the FIFA server!")
+        // Check length 
+        expect(response.body.results.length).toEqual(131771)
       });
 });
 
+test("GET /search_by_content", async () => {
+  await supertest(app).get("/search_by_content?SearchBy=genre&SearchContent=rock")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results[0]).toStrictEqual(results.rock)
+    });
+});
+
+test("GET /search_by_content", async () => {
+  await supertest(app).get("/search_by_content?SearchBy=song&SearchContent=a")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content", async () => {
+  await supertest(app).get("/search_by_content?SearchBy=all&SearchContent=a")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content", async () => {
+  await supertest(app).get("/search_by_content?SearchBy=lyrics&SearchContent=a")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content", async () => {
+  await supertest(app).get("/search_by_content?SearchBy=album&SearchContent=a")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content", async () => {
+  await supertest(app).get("/search_by_content?SearchBy=artist&SearchContent=James")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content", async () => {
+  await supertest(app).get("/search_by_content?SearchBy=&SearchContent=James")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=song&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=all&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=album&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=artist&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=artist&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=all&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=song&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=album&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+/*
 test("GET /hello with name", async () => {
   
     await supertest(app).get("/hello?name=Steve")
@@ -173,3 +318,4 @@ test("GET /search/players basic 1", async () => {
 
     });
 });
+*/
