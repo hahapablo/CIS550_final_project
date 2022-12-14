@@ -156,7 +156,7 @@ async function getSongsSearchByContentAndRange(req, res) {
     connection.query(`
       SELECT title, artists, album, acousticness, danceability, energy, release_date, duration_ms
       FROM Songs
-      WHERE title LIKE '%${input}%' OR album LIKE '%${input}%' OR artists LIKE '%${input}%'
+      WHERE (title LIKE '%${input}%' OR album LIKE '%${input}%' OR artists LIKE '%${input}%')
         AND acousticness between ${acLow} and ${acHigh}
         AND danceability between ${daLow} and ${daHigh}
         AND energy between ${enLow} and ${enHigh}
@@ -166,6 +166,7 @@ async function getSongsSearchByContentAndRange(req, res) {
           console.log(error)
           res.json({ error: error })
         } else if (results) {
+          console.log("search2=", results)
           res.json({ results: results })
         }
       }
@@ -241,7 +242,7 @@ async function getSongsSearchByContentAndRangeAndRank(req, res) {
     connection.query(`
       SELECT title, artists, album, acousticness, danceability, energy, release_date, duration_ms
       FROM Songs
-      WHERE title LIKE '%${input}%' OR album LIKE '%${input}%' OR artists LIKE '%${input}%'
+      WHERE (title LIKE '%${input}%' OR album LIKE '%${input}%' OR artists LIKE '%${input}%')
         AND acousticness between ${acLow} and ${acHigh}
         AND danceability between ${daLow} and ${daHigh}
         AND energy between ${enLow} and ${enHigh}
@@ -252,6 +253,7 @@ async function getSongsSearchByContentAndRangeAndRank(req, res) {
           console.log(error)
           res.json({ error: error })
         } else if (results) {
+          console.log(results)
           res.json({ results: results })
         }
       }

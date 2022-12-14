@@ -93,9 +93,9 @@ function LyricsPage() {
         <Row justify="space-around" style={{paddingTop:"10px"}}>
           <Col span={12}>
             <Row justify="space-around">
-              <div>
+              <div style ={{overflow: 'hidden',  maxHeight:'600px'}}>
                 <a href="search">
-                  <img src="https://source.unsplash.com/random/" alt="crypto" style = {{ maxWidth:'100%', maxHeigh:'100%'}}>
+                  <img src="https://source.unsplash.com/random/" alt="crypto" style = {{ maxWidth:'100%'}}>
                   </img>
                 </a>
               </div>
