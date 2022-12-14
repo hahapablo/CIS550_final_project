@@ -228,12 +228,12 @@ async function getSongsSearchByContentAndRange(req, res) {
 async function getSongsSearchByContentAndRangeAndRank(req, res) {
   const searchBy = req.query.SearchBy
   const input = req.query.SearchContent
-  const acLow = req.query.AccousticnessLow
-  const acHigh = req.query.AccousticnessHigh
-  const daLow = req.query.DanceabilityLow
-  const daHigh = req.query.DanceabilityHigh
-  const enLow = req.query.EnergyLow
-  const enHigh = req.query.EnergyHigh
+  const acLow = req.query.AccousticnessLow ? req.query.AccousticnessLow : 0
+  const acHigh = req.query.AccousticnessHigh ? req.query.AccousticnessHigh : 1
+  const daLow = req.query.DanceabilityLow ? req.query.DanceabilityLow : 0
+  const daHigh = req.query.DanceabilityHigh ? req.query.DanceabilityHigh : 1
+  const enLow = req.query.EnergyLow ? req.query.EnergyLow : 0
+  const enHigh = req.query.EnergyHigh ? req.query.EnergyHigh : 1
   const rank = req.query.Rank
   console.log(searchBy, input, acLow, acHigh, daLow, daHigh, enLow, enHigh)
 

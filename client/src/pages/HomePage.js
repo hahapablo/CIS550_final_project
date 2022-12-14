@@ -36,20 +36,23 @@ class HomePage extends React.Component {
             <Carousel autoplay autoplaySpeed = {1500} style = {{ width: '100%', height:'100%'}}>
               <div style = {{justifyContent: "space-around"}}>
                   <div>
-                  <a href="/lyrics"><img src={dance} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>
+                    <a href="/search">
+                      <img src={dance} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}>
+                      </img>
+                    </a>
                   </div>
                 </div>
               <div style = {{justifyContent: "space-around"}}>
                   <div>
-                  <a href="search"><img src={energy} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
+                  <a href="/search"><img src={energy} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
                 </div>
                 <div style = {{justifyContent: "space-around"}}>
                   <div>
-                  <a href="search"><img src={accoustic} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
+                  <a href="/search"><img src={accoustic} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
                 </div>
                 <div style = {{justifyContent: "space-around"}}>
                   <div>
-                  <a href="search"><img src={random} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
+                  <a href="/search"><img src={random} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}></img></a>                  </div>
                 </div>
                 
               
