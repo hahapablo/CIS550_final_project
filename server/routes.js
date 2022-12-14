@@ -319,21 +319,19 @@ async function getSongInfo(req, res) {
   console.log("getSongInfo")
   const title = req.query.Title
   const artist = req.query.Artist
-  const year = req.query.Year
+
   console.log(title)
   console.log(artist)
-  console.log(year)
+
 
   connection.query(`
-    SELECT d1.title, d1.artists, d1.album, d2.lyrics
-    FROM Songs d1
-    JOIN Lyrics d2
-      ON d1.title = d2.title
-      AND d1.artists = d2.artists
-      AND d1.year = d2.year
-    WHERE d1.title = ${title}
-      AND d1.artists = ${artist}
-      AND d1.year = ${year};
+    SELECT s.title, s.artists, s.year, lyrics, cover_idx, a.album_name
+    FROM Songs s JOIN Lyrics l
+      ON s.title = l.title AND s.artists = l.artists AND s.year = l.year
+    INNER JOIN AlbumCovers a
+      ON LOWER(s.album) = LOWER(a.album_name)
+    WHERE s.title like '%${title}%'
+      AND s.artists like '%${artist}%'
   `, function (error, results, fields) {
     if (error) {
       console.log(error)
@@ -350,5 +348,7 @@ module.exports = {
   getSongsSearchByContent,
   getSongsSearchByContentAndRange,
   getSongsSearchByContentAndRangeAndRank,
-  getSongInfo,
+  getSongInfo
 }
+
+

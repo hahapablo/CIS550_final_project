@@ -1,12 +1,5 @@
 import config from './config.json'
 
-// const getAllMatches = async (page, pagesize, league) => {
-//     var res = await fetch(`http://${config.server_host}:${config.server_port}/matches/${league}?page=${page}&pagesize=${pagesize}`, {
-//         method: 'GET',
-//     })
-//     return res.json()
-// }
-
 const getAllSongs = async () => {
   var res = await fetch(`http://${config.server_host}:${config.server_port}/song`, {
       method: 'GET',
@@ -39,21 +32,17 @@ const getSongsBySearchWithRangeAndRank = async(searchBy, searchContent, acLow, a
   return res.json()
 }
 
-const getSongInfo = async(title, artist, year) => {
-  console.log(title, artist, year)
-  var res = await fetch(`http://${config.server_host}:${config.server_port}/search_song_info?Title=${title}&Artist=${artist}&Year=${year}`, {
+const getSongInfo = async(title, artist) => {
+  console.log(title, artist)
+  var res = await fetch(`http://${config.server_host}:${config.server_port}/search_song_info?Title=${title}&Artist=${artist}`, {
     method: 'GET',
   })
-  console.log(res.json())
   return res.json()
 }
-
-
 
 export {
     getAllSongs,
     getSongsBySearch,
     getSongsBySearchWithRange,
     getSongsBySearchWithRangeAndRank,
-    getSongInfo,
-}
+    getSongInfo}

@@ -26,7 +26,6 @@ app.get('/search_by_content_and_range_and_rank', routes.getSongsSearchByContentA
 // Route 5 - register as GET 
 app.get('/search_song_info', routes.getSongInfo)
 
-
 app.listen(config.server_port, () => {
   console.log(`Server running at http://${config.server_host}:${config.server_port}/`);
 });

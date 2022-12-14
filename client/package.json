@@ -19,6 +19,7 @@
     "react-vis": "^1.11.7",
     "reactjs-social-login": "^2.6.1",
     "shards-react": "^1.0.3",
+    "spotify-web-api-node": "^5.0.2",
     "superagent": "^8.0.2",
     "web-vitals": "^1.1.2"
   },
