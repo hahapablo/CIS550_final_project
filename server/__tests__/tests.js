@@ -117,6 +117,44 @@ test("GET /search_by_content_and_range", async () => {
     });
 });
 
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=album&SearchContent=a&AccousticnessLow=a&AccousticnessHigh=b&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=song&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=all&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+test("GET /search_by_content_and_range", async () => {
+  await supertest(app).get("/search_by_content_and_range?SearchBy=artist&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+
 test("GET /search_by_content_and_range_and_rank", async () => {
   await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=artist&SearchContent=a&AccousticnessLow=0&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
     .expect(200)
@@ -159,6 +197,60 @@ test("GET /search_by_content_and_range_and_rank", async () => {
     .then((response) => {
       // Check text 
       expect(response.body.results.length).toBeGreaterThan(1)
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=artist&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=all&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=song&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=album&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+test("GET /search_by_content_and_range_and_rank", async () => {
+  await supertest(app).get("/search_by_content_and_range_and_rank?SearchBy=&SearchContent=a&AccousticnessLow=c&AccousticnessHigh=0.2&DanceabilityLow=0&DanceabilityHigh=1&EnergyLow=0&EnergyHigh=1&Rank=energy")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results).toBeUndefined()
+    });
+});
+
+test("GET /search_song_info", async () => {
+  await supertest(app).get("/search_song_info?Title=abc&Artist=abc")
+    .expect(200)
+    .then((response) => {
+      // Check text 
+      expect(response.body.results.length).toBe(0)
     });
 });
 
