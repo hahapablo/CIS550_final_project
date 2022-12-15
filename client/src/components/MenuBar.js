@@ -20,7 +20,7 @@ class MenuBar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink active  href="/category" >
-                  Category
+                  New Rlease
                 </NavLink>
               </NavItem>
               <NavItem>

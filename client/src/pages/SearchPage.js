@@ -237,7 +237,6 @@ function SearchPage() {
               <Radio value="energy"> Energy </Radio>
               <Radio value="duration"> Duration </Radio>
               <Radio value="release_date"> Release</Radio>
-              <Radio value=""> Random </Radio>
             </Radio.Group> 
           </Col>
           <Col span={2}  offset={0}>

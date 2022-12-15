@@ -15,6 +15,7 @@ import SearchPage from './pages/SearchPage';
 import HomePage from './pages/HomePage';
 import LyricsPage from './pages/LyricsPage';
 import LoginPage from './pages/LoginPage';
+
 ReactDOM.render(
   <div>
     <Router>
@@ -29,16 +30,6 @@ ReactDOM.render(
 							render={() => (
 								<HomePage />
 							)}/>
-        {/* <Route exact
-							path="/players"
-							render={() => (
-								<PlayersPage />
-							)}/>
-        <Route exact
-							path="/matches"
-							render={() => (
-								<MatchesPage />
-							)}/> */}
         <Route exact
 							path="/search"
 							render={() => (

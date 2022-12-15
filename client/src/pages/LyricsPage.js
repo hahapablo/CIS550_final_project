@@ -6,7 +6,8 @@ import {
   Button,
   Row,
   Col,
-  Typography
+  Typography,
+  Divider
 } from 'antd';
 
 import { getSongInfo } from '../fetcher'
@@ -32,7 +33,6 @@ function LyricsPage() {
   const [releaseYear, setReleaseYear] = useState()
   const [lyrics, setLyrics] = useState('')
   const [albumName, setAlbumName] = useState('')
-
 
 
   const handleOnChangeSearchContent1 = (e) => {
@@ -97,16 +97,23 @@ function LyricsPage() {
               </div>
             </Row>
 
-
           </Col>
-          <Col span={12} style={{overflow:'auto', height:'500px'}}>
-            <Row justify="space-around">
-                Song Title: {title}
+          <Col span={12} style={{ overflow:'auto',height:'700px'}}>
+            
+            <Row justify="center" style={{textAlign: 'center'}}>
+            <Divider />
+                Title: {title}
                 <br />
                 Artist: {artist}
+                <br />
+                Year: {releaseYear}
+                <br />
+                Album: {albumName}
+                <Divider />
             </Row>
-            <Row>
-              <div style={{whiteSpace: "pre-wrap", justifyContent:"center"}}>{lyrics}</div>
+            
+            <Row style={{textAlign: 'center', whiteSpace: "pre-wrap", justifyContent:"center"}}>
+              {lyrics}
             </Row>
 
           </Col>

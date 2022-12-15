@@ -15,7 +15,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 
 const spotifyApi = new SpotifyWebApi();
 
-spotifyApi.setAccessToken('BQCaWsqUvYGOGeK1asPu_Px8OEwpQznnI-wFw0QVSj868wqhsAVckdoIG-5DNFyy5pMVUvuCTK2JxjjPMG54nB-ncbVAR039392Wm39x3ZttLbzgWG7i4A4RogNk1rCRXluUI-MegLocujCApGlG3AUJFzXl5sb99RL_IewPGgMQT_xnQov1MajhnTJiRCIH2do');
+spotifyApi.setAccessToken('BQDaH46lXx0KA63Z-OXr7sOEk-xgLxI66fFDdpnRxGs1yw26q75Eb5HuIK0-g3mScxIf-keg9KVTAaheGo3f41fosfvKqWmA66MDkitpUuGA0KjPpL14ZicUctl9xfNy2pwYfulfkweo1hMX9hJdh77rv0Muawb35QbSAHdnP5PU7EGFTmqN3uPWtn-nYL7aIVXTBaNF');
 
 
 // const handleSubmitSearch1 = async() => {
@@ -41,8 +41,6 @@ function HomePage() {
   const [href3, setHref3] = useState('')
   const [href4, setHref4] = useState('')
   const [href5, setHref5] = useState('')
-
-
 
 
 
