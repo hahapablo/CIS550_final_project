@@ -11,7 +11,7 @@ class MenuBar extends React.Component {
     render() {
         return(
         <Navbar type="dark" theme="dark" expand="md">
-          <NavbarBrand href="/">Spotify 2.0</NavbarBrand>
+          <NavbarBrand href="/">Spotify 5.50</NavbarBrand>
             <Nav navbar>
               <NavItem>
                 <NavLink active  href="/search" >
