@@ -6,16 +6,12 @@ import { getSpotifyNewRelease } from '../fetcher'
 
 import { Carousel, Button } from 'antd';
 import { Layout } from 'antd';
-import accoustic from '../pics/accoustic.JPG';
-import dance from '../pics/dance.JPG';
-import energy from '../pics/energy.JPG';
-import random from '../pics/random.JPG';
 const { Header, Footer, Sider, Content } = Layout;
 const SpotifyWebApi = require('spotify-web-api-node');
 
 const spotifyApi = new SpotifyWebApi();
 
-spotifyApi.setAccessToken('BQDaH46lXx0KA63Z-OXr7sOEk-xgLxI66fFDdpnRxGs1yw26q75Eb5HuIK0-g3mScxIf-keg9KVTAaheGo3f41fosfvKqWmA66MDkitpUuGA0KjPpL14ZicUctl9xfNy2pwYfulfkweo1hMX9hJdh77rv0Muawb35QbSAHdnP5PU7EGFTmqN3uPWtn-nYL7aIVXTBaNF');
+spotifyApi.setAccessToken('BQDErddQMRb-yS5XR4Ao8Z1duGi1rk1XNWKRlC8M2ns-XB4E1y4LQGWMO5vy4qa0N1apiTQQGoTVRdCXBd_ndROLlea2PsiP77Fo79WDbSmkYzSm5pSuuZJb2cse1-HpOSBdSbB1wyY3fxXUksrLqXp0_UgzGJR2XTyMEy2cauoClWcjuumHB9H552xmI-Yqow4');
 
 
 // const handleSubmitSearch1 = async() => {
@@ -76,51 +72,51 @@ function HomePage() {
     <div>
       <MenuBar />
       <Layout>
-          <Content>
-            <Carousel autoplay autoplaySpeed = {1500} style = {{ width: '100%', height:'100%'}}>
+          <Content style={{ }}>
+            <Carousel autoplay autoplaySpeed = {1500} style = {{ width: '100%', height:'50%'}}>
               <div style = {{justifyContent: "space-around"}}>
-                <div>
+                
                   <a href={href1}>
-                    <img src={link1} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}>
+                    <img id="1" src={link1} alt="Logo" style = {{ objectFit: 'cover', width: '100%', height:'100%'}}>
                     </img>
                   </a>
-                </div>
+             
               </div>
 
               <div style = {{justifyContent: "space-around"}}>
-                <div>
+          
                   <a href={href2}>
-                    <img src={link2} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}>
+                    <img id="2" src={link2} alt="Logo" style = {{ objectFit: 'cover', width: '100%', height: '100%'}}>
                     </img>
                   </a>
-                </div>
+       
               </div>
               
               <div style = {{justifyContent: "space-around"}}>
-                <div>
+       
                   <a href={href3}>
-                    <img src={link3} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}>
+                    <img id="3" src={link3} alt="Logo" style = {{ objectFit: 'cover', width: '100%', height: '100%'}}>
                     </img>
                   </a>
-                </div>
+   
               </div>
 
               <div style = {{justifyContent: "space-around"}}>
-                <div>
+      
                   <a href={href4}>
-                    <img src={link4} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}>
+                    <img id="4" src={link4} alt="Logo" style = {{ objectFit: 'cover', width: '100%', height: '100%'}}>
                     </img>
                   </a>
-                </div>
+ 
               </div>
 
               <div style = {{justifyContent: "space-around"}}>
-                <div>
+
                   <a href={href5}>
-                    <img src={link5} alt="Logo" style = {{ objectFit: 'cover', width: '1800px', height: '830px'}}>
+                    <img id="5" src={link5} alt="Logo" style = {{ objectFit: 'cover', width: '100%', height: '100%'}}>
                     </img>
                   </a>
-                </div>
+
               </div>
 
                 

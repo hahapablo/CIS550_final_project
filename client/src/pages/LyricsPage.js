@@ -69,21 +69,21 @@ function LyricsPage() {
       <div style={{paddingLeft:"10px",paddingRight:"10px"}}>
         <Row justify="space-around" style={{paddingTop:"10px"}}>
           <Col span={1}  offset={0}>
-           <Text>Song</Text> 
+           <Text id="1">Song</Text> 
           </Col>
           <Col span={5}  offset={0} >  
               <Input placeholder='search input' value={searchContent1} onChange={handleOnChangeSearchContent1}/>
           </Col>
 
           <Col span={1}  offset={1}>
-           <Text>Artist</Text> 
+           <Text id="2">Artist</Text> 
           </Col>
           <Col span={5}  offset={0} >
               <Input placeholder='search input' value={searchContent2} onChange={handleOnChangeSearchContent2}/>
           </Col>
 
           <Col span={3} offset={1} style={{display: "flex", justifyContent:"center", alignItems: "center"}}> 
-            <Button onClick={handleSubmitSearch1}>Search</Button> 
+            <Button id="3" onClick={handleSubmitSearch1}>Search</Button> 
           </Col>
         </Row>
 
@@ -102,13 +102,13 @@ function LyricsPage() {
             
             <Row justify="center" style={{textAlign: 'center'}}>
             <Divider />
-                Title: {title}
+                <div id="4">Title: {title}</div>
                 <br />
-                Artist: {artist}
+                <div id="5">Artist: {artist}</div>
                 <br />
-                Year: {releaseYear}
+                <div id="6">Year: {releaseYear}</div>
                 <br />
-                Album: {albumName}
+                <div id="7">Album: {albumName}</div>
                 <Divider />
             </Row>
             

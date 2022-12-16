@@ -59,20 +59,6 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: '1',
-    title: 'Taylor Swift1',
-    artists: 32,
-    album: 'New York No. 1 Lake Park',
-    acousticness: 11,
-    danceability: 11,
-    energy: 10,
-    release_data: 2000,
-    duration: 2,
-  },
-];
-
 function SearchPage() {
 
   const [songList, setSongList] = useState([])
@@ -175,17 +161,17 @@ function SearchPage() {
       <div style={{paddingLeft:"10px",paddingRight:"10px"}}>
         <Row justify="space-around" style={{paddingTop:"10px"}}>
           <Col span={2}  offset={0}>
-           <Text>Search By </Text> 
+           <Text id="1">Search By </Text> 
           </Col>
 
           <Col span={11}  offset={0} >         
             <Radio.Group style={{display:"flex", justifyContent:"start"}} onChange={handleOnChangeSearchBy} value={searchBy}>
-              <Radio value="all"> All </Radio>
-              <Radio value="song"> Song </Radio>
-              <Radio value="album"> Album </Radio>
-              <Radio value="artist"> Artist </Radio>
-              <Radio value="lyrics"> Lyrics </Radio>
-              <Radio value="genre"> Genre </Radio>
+              <Radio id="2" value="all"> All </Radio>
+              <Radio id="3" value="song"> Song </Radio>
+              <Radio id="4" value="album"> Album </Radio>
+              <Radio id="5" value="artist"> Artist </Radio>
+              <Radio id="6" value="lyrics"> Lyrics </Radio>
+              <Radio id="7" value="genre"> Genre </Radio>
             </Radio.Group> 
           </Col>
           <Col span={8}  offset={0} >  
@@ -199,7 +185,7 @@ function SearchPage() {
 
         <Row justify="space-around" style={{paddingTop:"10px"}}>
           <Col span={2}  offset={0}>
-            <Text>Filter By </Text> 
+            <Text id="8">Filter By </Text> 
           </Col>
 
           <Col span={19}  offset={0} style={{display:"flex", justifyContent:"space-around"}}>
@@ -227,7 +213,7 @@ function SearchPage() {
 
         <Row justify="space-around" style={{paddingTop:"10px"}}>
           <Col span={2}  offset={0}>
-            <Text>Rank By </Text> 
+            <Text id="9">Rank By </Text> 
           </Col>
 
           <Col span={12}  offset={0}>         
@@ -240,7 +226,7 @@ function SearchPage() {
             </Radio.Group> 
           </Col>
           <Col span={2}  offset={0}>
-            <Text>Order By</Text> 
+            <Text id="10">Order By</Text> 
           </Col>
           <Col span={5}  offset={0}>         
             <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankOrder} onChange={handleOnChangeRankByOrder} >
