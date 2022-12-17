@@ -101,15 +101,22 @@ async function getSongsSearchByContent(req, res) {
     )
   } else if (searchBy === "lyrics") {
     connection.query(`
-      SELECT d1.title, d1.artists, d1.album, d1.acousticness, d1.danceability, d1.energy, d1.release_date, d1.duration_ms
-      FROM Songs d1
-      INNER JOIN (
-        SELECT title, artists, year
-        FROM Lyrics
-        WHERE lyrics LIKE '%${input}%') d2
-      ON d1.title = d2.title
-      AND d1.artists = d2.artists
-      AND d1.year = d2.year;`,
+      with agg_artists as (
+        select s.title, s.year, group_concat(s.artist) as artists, l.lyrics
+        from Songs_2 as s
+        join (
+            select title, artist, year, lyrics
+            from Lyrics_1
+            where lyrics like '%${input}%'
+            ) as l
+            on s.title = l.title and s.artist = l.artist and s.year = l.year
+        group by s.title, s.year
+      )
+      select s.title, a.artists, s.album, s.acousticness, s.danceability, s.energy, s.release_date, s.duration
+      from Songs_2 as s
+          join agg_artists as a
+              on s.title = a.title and s.year = a.year
+      where a.artists like concat('%', s.artist, '%');`,
       function (error, results, fields) {
         if (error) {
           console.log(error)
@@ -121,13 +128,22 @@ async function getSongsSearchByContent(req, res) {
     )
   } else if (searchBy === "genre") {
     connection.query(`
-      SELECT d1.title, d1.artists, d1.album, d1.acousticness, d1.danceability, d1.energy, d1.release_date, d1.duration_ms
-      FROM Songs d1
-      JOIN Lyrics d2
-      ON d1.title = d2.title
-      AND d1.artists = d2.artists
-      AND d1.year = d2.year
-      WHERE d2.tag LIKE '${input}';`,
+      with agg_artists as (
+        select s.title, s.year, group_concat(s.artist) as artists, l.tag
+        from Songs_2 as s
+        join (
+            select title, artist, year, tag
+            from Lyrics_1
+            where tag like '%${input}%'
+            ) as l
+            on s.title = l.title and s.artist = l.artist and s.year = l.year
+        group by s.title, s.year
+      )
+      select s.title, a.artists, s.album, s.acousticness, s.danceability, s.energy, s.release_date, s.duration
+      from Songs_2 as s
+          join agg_artists as a
+              on s.title = a.title and s.year = a.year
+      where a.artists like concat('%', s.artist, '%');`,
       function (error, results, fields) {
         if (error) {
           console.log(error)
@@ -326,13 +342,25 @@ async function getSongInfo(req, res) {
 
 
   connection.query(`
-    SELECT s.title, s.artists, s.year, lyrics, cover_idx, a.album_name
-    FROM Songs s JOIN Lyrics l
-      ON s.title = l.title AND s.artists = l.artists AND s.year = l.year
-    INNER JOIN AlbumCovers a
-      ON LOWER(s.album) = LOWER(a.album_name)
-    WHERE s.title like '%${title}%'
-      AND s.artists like '%${artist}%'
+    with agg_artists as (
+      select s.title, s.year, group_concat(s.artist) as artists, l.lyrics
+      from Songs_2 as s
+      join (
+          select title, artist, year, lyrics
+          from Lyrics_1
+          ) as l
+          on s.title = l.title and s.artist = l.artist and s.year = l.year
+      group by s.title, s.year
+    )
+    select s.title, a.artists, s.year, a.lyrics, c.cover_idx, s.album
+    from Songs_2 as s
+        join agg_artists as a
+            on s.title = a.title and s.year = a.year
+        join AlbumCovers_1 as c
+            on lower(s.album) = lower(c.album_name)
+    where a.artists like concat('%', s.artist, '%')
+    and s.title like '%${title}%'
+    and a.artists like '%${artist}%';
   `, function (error, results, fields) {
     if (error) {
       console.log(error)

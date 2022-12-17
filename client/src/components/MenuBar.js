@@ -28,6 +28,11 @@ class MenuBar extends React.Component {
                   Lyrics
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink active  href="/login" >
+                  Login
+                </NavLink>
+              </NavItem>
             </Nav>
         </Navbar>
         )

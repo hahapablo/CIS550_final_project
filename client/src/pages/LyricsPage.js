@@ -102,13 +102,15 @@ function LyricsPage() {
             
             <Row justify="center" style={{textAlign: 'center'}}>
             <Divider />
-                <div id="4">Title: {title}</div>
-                <br />
-                <div id="5">Artist: {artist}</div>
-                <br />
-                <div id="6">Year: {releaseYear}</div>
-                <br />
-                <div id="7">Album: {albumName}</div>
+                <div id="4">
+                  Title: {title}
+                  <br />
+                  Artist: {artist}
+                  <br />
+                  Year: {releaseYear}
+                  <br />
+                  Album: {albumName}
+                </div>
                 <Divider />
             </Row>
             

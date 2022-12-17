@@ -8,9 +8,9 @@ describe('frontendtest2.cy.js', () => {
     cy.get('#2').should('contain.text', 'Artist')
     cy.get('#3').should('contain.text', 'Search')
     cy.get('#4').should('contain.text', 'Title')
-    cy.get('#5').should('contain.text', 'Artist')
-    cy.get('#6').should('contain.text', 'Year')
-    cy.get('#7').should('contain.text', 'Album')
+    cy.get('#4').should('contain.text', 'Artist')
+    cy.get('#4').should('contain.text', 'Year')
+    cy.get('#4').should('contain.text', 'Album')
 
   })
 })

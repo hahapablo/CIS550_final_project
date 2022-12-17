@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {useState} from "react";
+import { useState } from "react";
 import {
   Input,
   Button,
@@ -8,6 +8,7 @@ import {
   Row,
   Col,
   Table,
+  Progress,
 } from 'antd';
 
 
@@ -117,21 +118,21 @@ function SearchPage() {
     setEnergyHigh(value);
   };
 
-  const handleSubmitSearch1 = async() => {
+  const handleSubmitSearch1 = async () => {
     const search1Result = await getSongsBySearch(searchBy, searchContent)
     console.log("search1Result=", search1Result)
     setSongList(search1Result.results);
   };
-  
-  const handleSubmitSearch2 = async() => {
-    const search2Result = 
+
+  const handleSubmitSearch2 = async () => {
+    const search2Result =
       await getSongsBySearchWithRange(searchBy, searchContent, acousticnessLow, acousticnessHigh, danceabilityLow, danceabilityHigh, energyLow, energyHigh)
     console.log("search2Result=", search2Result)
     setSongList(search2Result.results);
   };
 
-  const handleSubmitApply = async() => {
-    const search3Result = 
+  const handleSubmitApply = async () => {
+    const search3Result =
       await getSongsBySearchWithRangeAndRank(searchBy, searchContent, acousticnessLow, acousticnessHigh, danceabilityLow, danceabilityHigh, energyLow, energyHigh, rankBy, rankOrder)
     console.log("search3Result=", search3Result)
     setSongList(search3Result.results);
@@ -154,88 +155,88 @@ function SearchPage() {
     func();
   }, []);
 
-  return ( 
+  return (
     <div>
       <MenuBar />
 
-      <div style={{paddingLeft:"10px",paddingRight:"10px"}}>
-        <Row justify="space-around" style={{paddingTop:"10px"}}>
-          <Col span={2}  offset={0}>
-           <Text id="1">Search By </Text> 
+      <div style={{ paddingLeft: "10px", paddingRight: "10px" }}>
+        <Row justify="space-around" style={{ paddingTop: "10px" }}>
+          <Col span={2} offset={0}>
+            <Text id="1">Search By </Text>
           </Col>
 
-          <Col span={11}  offset={0} >         
-            <Radio.Group style={{display:"flex", justifyContent:"start"}} onChange={handleOnChangeSearchBy} value={searchBy}>
+          <Col span={11} offset={0} >
+            <Radio.Group style={{ display: "flex", justifyContent: "start" }} onChange={handleOnChangeSearchBy} value={searchBy}>
               <Radio id="2" value="all"> All </Radio>
               <Radio id="3" value="song"> Song </Radio>
               <Radio id="4" value="album"> Album </Radio>
               <Radio id="5" value="artist"> Artist </Radio>
               <Radio id="6" value="lyrics"> Lyrics </Radio>
               <Radio id="7" value="genre"> Genre </Radio>
-            </Radio.Group> 
+            </Radio.Group>
           </Col>
-          <Col span={8}  offset={0} >  
-            <Input placeholder='search input' value={searchContent} onChange={handleOnChangeSearchContent}/>
+          <Col span={8} offset={0} >
+            <Input placeholder='search input' value={searchContent} onChange={handleOnChangeSearchContent} />
           </Col>
-          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> 
-            <Button onClick={handleSubmitSearch1}>Search</Button> 
-          </Col>
-
-        </Row>
-
-        <Row justify="space-around" style={{paddingTop:"10px"}}>
-          <Col span={2}  offset={0}>
-            <Text id="8">Filter By </Text> 
-          </Col>
-
-          <Col span={19}  offset={0} style={{display:"flex", justifyContent:"space-around"}}>
-            <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>Accousticness</Text>
-              <InputNumber value={acousticnessLow}  defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeAcousticnessLow} />
-            <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>~</Text>
-              <InputNumber value={acousticnessHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeAcousticnessHigh} />
-          
-            <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>Danceability </Text>
-            <InputNumber value={danceabilityLow} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeDanceabilityLow}/>
-            <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>~</Text>
-            <InputNumber value={danceabilityHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeDanceabilityHigh}/>
-
-            <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>Energy </Text>
-            <InputNumber value={energyLow} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeEnergyLow}/>
-            <Text style={{paddingLeft:"10px",paddingRight:"10px"}}>~</Text>
-            <InputNumber value={energyHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeEnergyHigh}/>
-          </Col>
-
-          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}} > 
-            <Button onClick={handleSubmitSearch2}>Search</Button> 
+          <Col span={2} offset={1} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Button onClick={handleSubmitSearch1}>Search</Button>
           </Col>
 
         </Row>
 
-        <Row justify="space-around" style={{paddingTop:"10px"}}>
-          <Col span={2}  offset={0}>
-            <Text id="9">Rank By </Text> 
+        <Row justify="space-around" style={{ paddingTop: "10px" }}>
+          <Col span={2} offset={0}>
+            <Text id="8">Filter By </Text>
           </Col>
 
-          <Col span={12}  offset={0}>         
-            <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankBy} onChange={handleOnChangeRankBy} >
+          <Col span={19} offset={0} style={{ display: "flex", justifyContent: "space-around" }}>
+            <Text style={{ paddingLeft: "10px", paddingRight: "10px" }}>Accousticness</Text>
+            <InputNumber value={acousticnessLow} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeAcousticnessLow} />
+            <Text style={{ paddingLeft: "10px", paddingRight: "10px" }}>~</Text>
+            <InputNumber value={acousticnessHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeAcousticnessHigh} />
+
+            <Text style={{ paddingLeft: "10px", paddingRight: "10px" }}>Danceability </Text>
+            <InputNumber value={danceabilityLow} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeDanceabilityLow} />
+            <Text style={{ paddingLeft: "10px", paddingRight: "10px" }}>~</Text>
+            <InputNumber value={danceabilityHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeDanceabilityHigh} />
+
+            <Text style={{ paddingLeft: "10px", paddingRight: "10px" }}>Energy </Text>
+            <InputNumber value={energyLow} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeEnergyLow} />
+            <Text style={{ paddingLeft: "10px", paddingRight: "10px" }}>~</Text>
+            <InputNumber value={energyHigh} defaultValue="1" min="0" max="1" step="0.01" onChange={handleOnChangeEnergyHigh} />
+          </Col>
+
+          <Col span={2} offset={1} style={{ display: "flex", justifyContent: "center", alignItems: "center" }} >
+            <Button onClick={handleSubmitSearch2}>Search</Button>
+          </Col>
+
+        </Row>
+
+        <Row justify="space-around" style={{ paddingTop: "10px" }}>
+          <Col span={2} offset={0}>
+            <Text id="9">Rank By </Text>
+          </Col>
+
+          <Col span={12} offset={0}>
+            <Radio.Group style={{ display: "flex", justifyContent: "start" }} value={rankBy} onChange={handleOnChangeRankBy} >
               <Radio value="acousticness"> Acousticness </Radio>
               <Radio value="danceability"> Danceability </Radio>
               <Radio value="energy"> Energy </Radio>
               <Radio value="duration"> Duration </Radio>
               <Radio value="release_date"> Release</Radio>
-            </Radio.Group> 
+            </Radio.Group>
           </Col>
-          <Col span={2}  offset={0}>
-            <Text id="10">Order By</Text> 
+          <Col span={2} offset={0}>
+            <Text id="10">Order By</Text>
           </Col>
-          <Col span={5}  offset={0}>         
-            <Radio.Group style={{display:"flex",justifyContent:"start"}} value={rankOrder} onChange={handleOnChangeRankByOrder} >
+          <Col span={5} offset={0}>
+            <Radio.Group style={{ display: "flex", justifyContent: "start" }} value={rankOrder} onChange={handleOnChangeRankByOrder} >
               <Radio value="DESC"> High-to-Low </Radio>
               <Radio value="ASC"> Low-to-High </Radio>
-            </Radio.Group> 
+            </Radio.Group>
           </Col>
 
-          <Col span={2} offset={1} style={{display: "flex",justifyContent:"center", alignItems: "center"}}> 
+          <Col span={2} offset={1} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Button onClick={handleSubmitApply}>Apply</Button>
           </Col>
 
@@ -243,7 +244,7 @@ function SearchPage() {
 
       </div>
 
-      <Table columns={columns} dataSource={songList} style={{paddingTop:"10px"}} />
+      <Table columns={columns} dataSource={songList} style={{ paddingTop: "10px" }} />
 
 
     </div>

@@ -11,19 +11,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 
 const spotifyApi = new SpotifyWebApi();
 
-spotifyApi.setAccessToken('BQDErddQMRb-yS5XR4Ao8Z1duGi1rk1XNWKRlC8M2ns-XB4E1y4LQGWMO5vy4qa0N1apiTQQGoTVRdCXBd_ndROLlea2PsiP77Fo79WDbSmkYzSm5pSuuZJb2cse1-HpOSBdSbB1wyY3fxXUksrLqXp0_UgzGJR2XTyMEy2cauoClWcjuumHB9H552xmI-Yqow4');
-
-
-// const handleSubmitSearch1 = async() => {
-//   console.log("here")
-//   spotifyApi.getNewReleases({ limit: 5, offset: 0, country: 'SE' })
-//     .then(function (data) {
-//       console.log(data.body)
-//       //res.json({ results: data.body.items })
-//     }, function (err) {
-//       console.log("Something went wrong!", err);
-//     });
-// };
+spotifyApi.setAccessToken('BQAds3VRnIuywZyBTOHSyYlzcMTwXkZEpJsDQfXKr8Ut2VRhegjHQXRmCnRTY62_zBmbRBOoRe0ncis-GI2xfwcSCpps63sAj_S5LpKzbhxt3na-QjeDuicySHpHMx6HResy8m-CprY86c6ZUtm158gOZDQxNDOcn5Ccl_4EcEENpaqMPi1cbKHvQc3a2aiN33I');
 
 function HomePage() {
   const [newReleases, setNewReleases] = useState();
@@ -37,8 +25,6 @@ function HomePage() {
   const [href3, setHref3] = useState('')
   const [href4, setHref4] = useState('')
   const [href5, setHref5] = useState('')
-
-
 
   useEffect(() => {
     console.log("hey")
